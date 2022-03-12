@@ -44,7 +44,7 @@ public class RobotContainer
 
     public final Conveyor mConveyor;
     public final ConveyorCommands mConveyorCommands;
-    
+
     public final Launcher mLauncher;
     public final LauncherCommands mLauncherCommands;
   
@@ -58,24 +58,26 @@ public class RobotContainer
         //mExampleSubsystem = new ExampleSubsystem();
         //mAutoCommand = new ExampleCommand(mExampleSubsystem);
         mIntake = new Intake();
-        mIntakeCommands = new IntakeCommands(mIntake, mArcadeController);
+        mIntakeCommands = new IntakeCommands(mIntake);
 
         mLauncher = new Launcher();
         mLauncherCommands = new LauncherCommands(mLauncher, mArcadeController);
-        //mConveyor = new Conveyor();
 
         mDrive = new Drive();
         mDriveCommands = new DriveCommands(mDrive, mDriverController);
 
         mClimber = new Climber();
-        mClimberCommands = new ClimberCommands(mClimber, mArcadeController);
+        mClimberCommands = new ClimberCommands(mClimber);
 
         mConveyor = new Conveyor();
         mConveyorCommands = new ConveyorCommands(mConveyor, mIntake);
 
+<<<<<<< HEAD
         mConveyor.setDefaultCommand(mConveyorCommands.new FillConveyors());
         mLauncher.setDefaultCommand(mLauncherCommands.new ToggleLauncher());
 
+=======
+>>>>>>> 214446fd4a33f3fec7fbb7b1293768dcaca12898
         configureButtonBindings();
     }
 
@@ -85,6 +87,7 @@ public class RobotContainer
             .whenPressed(mIntakeCommands.new ToggleIntake());
         new JoystickButton(mArcadeController, OIConstants.kIntakeReverseButton)
             .whileHeld(mIntakeCommands.new EjectIntake());
+
         new JoystickButton(mArcadeController, OIConstants.kConveyorReverseBothButton)
             .whileHeld(mConveyorCommands.new ReverseBoth())
             .whenReleased(mConveyorCommands.new FillConveyors());
@@ -98,10 +101,13 @@ public class RobotContainer
             .whenPressed(mLauncherCommands.new ToggleLauncher());
         new JoystickButton(mArcadeController, OIConstants.kLauncherShootFarButton)
             .whileHeld(mLauncherCommands.new ShootFar());
+            
         new JoystickButton(mArcadeController, Constants.OIConstants.kClimberExtendButton)
-            .whenPressed(mClimberCommands.new ExtendCommand());
+            .whenPressed(mClimberCommands.new StartExtend())
+            .whenReleased(mClimberCommands.new StopExtend());
         new JoystickButton(mArcadeController, Constants.OIConstants.kClimberRetractButton)
-            .whenPressed(mClimberCommands.new RetractCommand());
+            .whenPressed(mClimberCommands.new StartRetract())
+            .whenReleased(mClimberCommands.new StopRetract());
     }
 
     /**

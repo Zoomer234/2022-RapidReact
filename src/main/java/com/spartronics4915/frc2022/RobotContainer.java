@@ -74,6 +74,7 @@ public class RobotContainer
         mConveyorCommands = new ConveyorCommands(mConveyor, mIntake);
 
         mConveyor.setDefaultCommand(mConveyorCommands.new FillConveyors());
+        mLauncher.setDefaultCommand(mLauncherCommands.new ToggleLauncher());
 
         configureButtonBindings();
     }

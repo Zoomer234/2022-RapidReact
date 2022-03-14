@@ -1,6 +1,7 @@
 package com.spartronics4915.frc2022.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.spartronics4915.frc2022.Constants;
 import com.spartronics4915.lib.subsystems.SpartronicsSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -32,7 +33,7 @@ public class Intake extends SpartronicsSubsystem
         {
             // ...and constructed here.
            mIntakeMotor = new CANSparkMax(kIntakeMotorId,MotorType.kBrushless);
-           mIntakeArm = new Solenoid(PneumaticsModuleType.CTREPCM, kIntakeSolenoidId);
+           mIntakeArm = new Solenoid(Constants.kPCMId, PneumaticsModuleType.CTREPCM, kIntakeSolenoidId);
            mToggleState = false;
            //switchState = new DigitalInput(0);
 
@@ -43,27 +44,25 @@ public class Intake extends SpartronicsSubsystem
             success = false;
         }
         logInitialized(success);
+        mIntakeMotor.setInverted(kIntakeMotorInverted);
+        
+        mIntakeMotor.setSmartCurrentLimit(kMaxCurrent);
     }
 
     //Subsystem methods - actions the robot can take - should be placed here.
 
     public void startIntake(boolean reversed){
         mIntakeArm.set(true);
-        mIntakeMotor.set(kHarvestSpeed * (reversed ? -1 : 1));
+        mIntakeMotor.set(reversed ? kEjectSpeed : kHarvestSpeed);
         mToggleState = true;
         //logInfo("intake running"); - not sure if we need this could be too much for driver to pay attention to
     }
 
     public void stopIntake() {
         mIntakeArm.set(false);
-        //showArmState();
         mIntakeMotor.set(0);
         mToggleState = false;
         //logInfo("intake stopped"); - not sure if we need this, same as above
-    }
-
-    public void eject(){
-        mIntakeMotor.set(kEjectSpeed);
     }
 
     public void stopIntakeMotor(){
@@ -77,6 +76,10 @@ public class Intake extends SpartronicsSubsystem
 
     public boolean toggleIntake() {
         mToggleState = !mToggleState;
+        return mToggleState;
+    }
+
+    public boolean getToggleState() {
         return mToggleState;
     }
     

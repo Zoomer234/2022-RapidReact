@@ -40,7 +40,7 @@ public final class Constants
         public static final boolean kRightFollowerOutputInverted = true;
 
         // PID
-        public static final double kP = 1;
+        public static final double kP = 0.215;
         public static final double kD = 0;
 
         // current limits

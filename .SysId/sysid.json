@@ -1,0 +1,11 @@
+{
+  "SysId": {
+    "Analysis Type": "Drivetrain",
+    "AnalyzerJSONLocation": "C:\\Users\\fruit\\OneDrive\\Documents\\MySpartronics2021\\Drivetrain sysid\\sysid_data20220315-174833.json",
+    "NetworkTables Settings": {
+      "serverTeam": "4915"
+    },
+    "mode": "Client",
+    "serverTeam": "4915"
+  }
+}

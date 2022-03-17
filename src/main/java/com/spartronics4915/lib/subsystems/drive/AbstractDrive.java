@@ -115,8 +115,11 @@ public abstract class AbstractDrive extends SpartronicsSubsystem
 
     public void tankDrive(double leftPercent, double rightPercent)
     {
-        mLeftMotor.setPercentOutput(leftPercent);
-        mRightMotor.setPercentOutput(rightPercent);
+        //mLeftMotor.setPercentOutput(leftPercent);
+        //mRightMotor.setPercentOutput(rightPercent);
+        mLeftMotor.setVelocity(0.3*leftPercent);
+        mRightMotor.setVelocity(0.3*rightPercent);
+
     }
 
     public SpartronicsMotor getLeftMotor()

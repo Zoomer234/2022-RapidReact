@@ -35,7 +35,8 @@ public class Climber extends SpartronicsSubsystem
             mClimberMotor = new TalonFX(kClimberMotorId);
             mClimberMotor.setInverted(kMotorIsInverted);
             mClimberMotor.setNeutralMode(NeutralMode.Brake); // set brake mode
-
+            //disable current limit with first variable
+            mClimberMotor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(false, kMaxCurrent, kMaxCurrent, 0));
             //mMotorSensors = new TalonFXSensorCollection()
 
             mClimberSolenoid = new Solenoid(Constants.kPCMId, PneumaticsModuleType.CTREPCM, kClimberSolenoidId);
@@ -47,10 +48,6 @@ public class Climber extends SpartronicsSubsystem
         }
         logInitialized(success);
         
-        //disable current limit with first variable
-        mClimberMotor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(false, kMaxCurrent, kMaxCurrent, 0));
-
-        mClimberMotor.setNeutralMode(NeutralMode.Brake);
     }
 
     // Subsystem methods - actions the robot can take - should be placed here.

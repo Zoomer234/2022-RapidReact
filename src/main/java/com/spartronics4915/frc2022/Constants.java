@@ -33,7 +33,7 @@ public final class Constants
         public static final double kNativeUnitsPerRevolution = 1;
 
         //Test this -- to correct for angular drift autonomous
-        public static final double kLeftFactor = .93;
+        public static final double kLeftFactor = .965;
 
         // constructors
         public static final TriFunction<Integer, SensorModel, Integer, SpartronicsMotor> kMotorConstructor = SpartronicsMax::makeMotor;
@@ -78,12 +78,14 @@ public final class Constants
         public static final int kBottomMotorId = 8;
         public static final int kTopMotorId = 9;
 
+        public static final boolean kTopConveyorInverted = false;
+        public static final boolean kBottomConveyorInverted = false; 
+
         public static final int kTopBeamBreakerId = 0;
         public static final int kBottomBeamBreakerId = 1;
 
         public static final double kMotorSpeed = 0.45;
         public static final double kSlowFactor = 0.3333;
-        
 
         public static final double kTopConveyorTime = 0.3;
         public static final double kBottomConveyorTime = 0.3;
@@ -182,6 +184,8 @@ public final class Constants
         public static final int kJoystickPort = 0;
         
         public static final int kSlowModeButton = 1;
+        
+        public static final int kFlipJoystickButton = 6;
 
         public static final int kIntakeToggleButton = 2;
 
@@ -208,6 +212,7 @@ public final class Constants
          * Speed the robot moves straight backwards during autonomous
          */
         public static final double kDriveSpeedPercent = .3;
+        public static final double kTurnSpeedPercent = .3;
 
         public static final double kDriveGearRatio = 10.57; 
 
